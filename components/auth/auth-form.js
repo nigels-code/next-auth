@@ -1,5 +1,6 @@
 import classes from './auth-form.module.css';
 import { useState, useRef } from 'react';
+import { signIn } from 'next-auth/client';
 
 function AuthForm() {
 	const emailInputRef = useRef();
@@ -35,6 +36,11 @@ function AuthForm() {
 		const enteredPassword = passwordInputRef.current.value;
 
 		if (isLogin) {
+			const result = signIn('credentials', {
+				redirect: false,
+				email: enteredEmail,
+				password: enteredPassword
+			});
 		} else {
 			try {
 				const result = await createUser(enteredEmail, enteredPassword);
