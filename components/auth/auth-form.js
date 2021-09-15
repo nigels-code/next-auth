@@ -39,7 +39,7 @@ function AuthForm() {
 		const enteredPassword = passwordInputRef.current.value;
 
 		if (isLogin) {
-			const result = signIn('credentials', {
+			const result = await signIn('credentials', {
 				redirect: false,
 				email: enteredEmail,
 				password: enteredPassword
