@@ -5,7 +5,7 @@ I wrote this while following Maximilian Schwarzmuller's "Next.js and React" cour
 A Single Page Application using Next.js, React, MongoDB, JavaScript, HTML
 
 I have connected this repo to Vercel.  
-Open </> to see the project in production.
+Open <https://next-auth-alpha.vercel.app/> to see the project in production.
 
 ## Installation
 
