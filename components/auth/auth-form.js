@@ -9,6 +9,7 @@ function AuthForm() {
 
 	const [isLogin, setIsLogin] = useState(true);
 	const router = useRouter();
+	const [isWobble, setWobble] = useState(false);
 
 	async function createUser(email, password) {
 		const response = await fetch('/api/auth/signup', {
@@ -38,6 +39,8 @@ function AuthForm() {
 		const enteredEmail = emailInputRef.current.value;
 		const enteredPassword = passwordInputRef.current.value;
 
+		let timeoutID;
+
 		if (isLogin) {
 			const result = await signIn('credentials', {
 				redirect: false,
@@ -47,6 +50,13 @@ function AuthForm() {
 
 			if (!result.error) {
 				router.replace('/profile');
+			} else {
+				if (isWobble) {
+					clearTimeout(timeoutID);
+					setWobble(false);
+				}
+				setWobble(true);
+				timeoutID = setTimeout(() => setWobble(false), 1000);
 			}
 		} else {
 			try {
@@ -59,7 +69,7 @@ function AuthForm() {
 	}
 
 	return (
-		<section className={classes.auth}>
+		<section className={classes.auth + ' ' + (isWobble ? classes.wobble : '')}>
 			<h1>{isLogin ? 'Login' : 'Sign Up'}</h1>
 			<form onSubmit={submitHandler}>
 				<div className={classes.control}>
