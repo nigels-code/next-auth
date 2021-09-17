@@ -56,7 +56,7 @@ function AuthForm() {
 					setWobble(false);
 				}
 				setWobble(true);
-				timeoutID = setTimeout(() => setWobble(false), 1000);
+				timeoutID = setTimeout(() => setWobble(false), 800);
 			}
 		} else {
 			try {
